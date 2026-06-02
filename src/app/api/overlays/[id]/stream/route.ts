@@ -8,10 +8,10 @@ import { getStore } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
-// Hold the stream open as long as the platform allows (Vercel clamps to the
-// plan max). When it does close, EventSource reconnects and we resend full
-// state, so the overlay just keeps showing its last frame across the gap.
-export const maxDuration = 800;
+// Max is 300s on Vercel's Hobby plan. When the stream closes, EventSource
+// auto-reconnects and we resend full state, so the overlay just keeps showing
+// its last frame across the brief gap. (Raise this if on Pro/Enterprise.)
+export const maxDuration = 300;
 
 const POLL_MS = 1000;
 const HEARTBEAT_MS = 15000;
